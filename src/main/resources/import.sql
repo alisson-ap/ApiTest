@@ -1,0 +1,1 @@
+INSERT INTO pessoa(id, name, idade) values(1,'alisson',25);
