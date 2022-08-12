@@ -1,9 +1,6 @@
 package com.magalhaes.ApiTest.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Pessoa {
@@ -13,14 +10,20 @@ public class Pessoa {
     private Long id;
     private String name;
     private Integer idade;
+    @ManyToOne
+    @JoinColumn(name = "funcao_id")
+    private Funcao funcao;
 
-    public Pessoa(){
+
+    public Pessoa() {
 
     }
-    public Pessoa(Long id, String name, Integer idade) {
+
+    public Pessoa(Long id, String name, Integer idade, Funcao funcao) {
         this.id = id;
         this.name = name;
         this.idade = idade;
+        this.funcao = funcao;
     }
 
     public Long getId() {
@@ -45,5 +48,13 @@ public class Pessoa {
 
     public void setIdade(Integer idade) {
         this.idade = idade;
+    }
+
+    public Funcao getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(Funcao funcao) {
+        this.funcao = funcao;
     }
 }
