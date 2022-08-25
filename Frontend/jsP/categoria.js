@@ -12,6 +12,7 @@ async function listar() {
         const th = document.createElement("th");
         const td = document.createElement("td");
 
+        tr.setAttribute("id","dataTable")
         th.setAttribute("scope", "col");
 
         th.innerText = post.id;
@@ -68,9 +69,14 @@ btn.addEventListener("click", async function (e) {
         }
 
         const response = await fetch("http://localhost:8080/funcao", init);
-        console.log(response);
-
+      
     }
+
+    const dataTable = document.querySelectorAll("#dataTable");
+
+    dataTable.forEach(e => e.remove());
+
+    listar();
 
     name.value = "";
 });

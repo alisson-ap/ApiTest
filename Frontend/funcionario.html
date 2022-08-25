@@ -39,30 +39,30 @@
         <div class="row g-2 justify-content-md-center">
             <div class="col-4">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                    <label for="floatingInputGrid">Nome</label>
+                    <input type="text" class="form-control" id="name" placeholder="name@example.com">
+                    <label for="name">Nome</label>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-floating">
-                    <input type="number" class="form-control" id="floatingInputGrid" placeholder="Idade">
-                    <label for="floatingInputGrid">Idade</label>
+                    <input type="number" class="form-control" id="idade" placeholder="Idade">
+                    <label for="idade">Idade</label>
                 </div>
             </div>
         </div>
         <div class="row justify-content-md-center mt-md-3">
             <div class="col-8">
                 <div class="form-floating">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <select class="form-select" id="funcao" aria-label="Floating label select example">
                         <option selected>Escolha a função</option>
                     </select>
-                    <label for="floatingSelect">Função</label>
+                    <label for="funcao">Função</label>
                 </div>
             </div>
         </div>
         <div class="row justify-content-md-center mt-md-3">
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary" id="submitF">Cadastrar</button>
             </div>
         </div>
         <div class="row justify-content-md-center m-md-5">
@@ -74,6 +74,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Idade</th>
                             <th scope="col">Função</th>
+                            <th scope="col">Deletar</th>
                         </tr>
                     </thead>
                     <tbody id="dataFunc">
