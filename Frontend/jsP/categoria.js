@@ -11,15 +11,24 @@ async function listar() {
         const tr = document.createElement("tr");
         const th = document.createElement("th");
         const td = document.createElement("td");
+        const tdDel = document.createElement("td");
+        const btnDel = document.createElement("button");
 
-        tr.setAttribute("id","dataTable")
+        tr.setAttribute("id", "dataTable")
         th.setAttribute("scope", "col");
+        btnDel.setAttribute("class", "btn btn-danger");
+        btnDel.setAttribute("id", "btnDel");
+        btnDel.setAttribute("onCLick", "excluir(" + post.id + ")");
+
 
         th.innerText = post.id;
         td.innerText = post.nomeFuncao;
+        btnDel.innerText = "Deletar";
 
+        tdDel.appendChild(btnDel);
         tr.appendChild(th);
         tr.appendChild(td);
+        tr.appendChild(tdDel);
         tableId.appendChild(tr);
 
     });
@@ -28,22 +37,24 @@ async function listar() {
 listar();
 
 
-function adiconar(datas) {
+async function excluir(id) {
 
-    const tr = document.createElement("tr");
-    const th = document.createElement("th");
-    const td = document.createElement("td");
+    const init = {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": 'application/json'
+        }
+    }
+    const response = await fetch("http://localhost:8080/funcao/" + id, init);
 
-    th.setAttribute("scope", "col");
+    const dataTable = document.querySelectorAll("#dataTable");
 
-    th.innerText = datas.id;
-    td.innerText = datas.nomeFuncao;
+    dataTable.forEach(e => e.remove());
 
-    tr.appendChild(th);
-    tr.appendChild(td);
-    tableId.appendChild(tr);
+    listar();
 
 }
+
 
 btn.addEventListener("click", async function (e) {
 
@@ -69,7 +80,7 @@ btn.addEventListener("click", async function (e) {
         }
 
         const response = await fetch("http://localhost:8080/funcao", init);
-      
+
     }
 
     const dataTable = document.querySelectorAll("#dataTable");
