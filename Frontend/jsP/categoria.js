@@ -13,6 +13,8 @@ async function listar() {
         const td = document.createElement("td");
         const tdDel = document.createElement("td");
         const btnDel = document.createElement("button");
+        const tdEdit = document.createElement("td");
+        const btnEdit = document.createElement("button");
 
         tr.setAttribute("id", "dataTable")
         th.setAttribute("scope", "col");
@@ -20,15 +22,22 @@ async function listar() {
         btnDel.setAttribute("id", "btnDel");
         btnDel.setAttribute("onCLick", "excluir(" + post.id + ")");
 
+        btnEdit.setAttribute("class", "btn btn-success");
+        btnEdit.setAttribute("id", "btnEdit");
+
+
 
         th.innerText = post.id;
         td.innerText = post.nomeFuncao;
         btnDel.innerText = "Deletar";
+        btnEdit.innerText = "Editar";
 
         tdDel.appendChild(btnDel);
+        tdEdit.appendChild(btnEdit);
         tr.appendChild(th);
         tr.appendChild(td);
         tr.appendChild(tdDel);
+        tr.appendChild(tdEdit);
         tableId.appendChild(tr);
 
     });
