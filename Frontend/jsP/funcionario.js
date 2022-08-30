@@ -38,6 +38,9 @@ btn.addEventListener("click", async function (e) {
         listarP();
     }
 
+    name.value = "";
+    idade.value = "";
+
 });
 
 async function categorias() {
@@ -71,8 +74,13 @@ async function listarP() {
         const tdName = document.createElement("td");
         const tdDelete = document.createElement("td");
         const buttonDelete = document.createElement("button");
+        const tdEdit = document.createElement("td");
+        const btnEdit = document.createElement("button");
 
         buttonDelete.setAttribute("class", "btn btn-danger")
+        buttonDelete.setAttribute("onClick", "excluir(" + funcionarios.id + ")");
+
+        btnEdit.setAttribute("class", "btn btn-success")
 
         tr.setAttribute("id", "dataTable");
 
@@ -81,14 +89,17 @@ async function listarP() {
         tdIdade.innerText = funcionarios.idade;
         tdFuncao.innerText = funcionarios.funcao.nomeFuncao;
         buttonDelete.innerText = "Deletar";
+        btnEdit.innerText = "Edit";
 
         tdDelete.appendChild(buttonDelete);
+        tdEdit.appendChild(btnEdit);
 
         tr.appendChild(thId);
         tr.appendChild(tdName);
         tr.appendChild(tdIdade);
         tr.appendChild(tdFuncao);
         tr.appendChild(tdDelete);
+        tr.appendChild(tdEdit);
 
 
         dataFunc.appendChild(tr);
@@ -96,5 +107,22 @@ async function listarP() {
     });
 }
 
+async function excluir(id) {
+    const init = {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": 'application/json'
+        }
+    }
+
+    const response = await fetch("http://localhost:8080/pessoa/" + id, init);
+
+    const dataTable = document.querySelectorAll("#dataTable");
+
+    dataTable.forEach(e => e.remove());
+
+    listarP()
+
+}
 categorias();
 listarP();
